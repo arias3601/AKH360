@@ -112,11 +112,11 @@ public class Hibernate {
 
         //This is the HQL code (HAPPY)
         Query singleCharacterQuery = session.createQuery("select c from Character as c where c.name='Mario'");
-
         Character beforeName = (Character)singleCharacterQuery.uniqueResult();
         beforeName.setName("Wario");
         session.merge(beforeName);
         transaction.commit();
+        showCharacters();
     }
 
     private void deleteCharacter(){
@@ -272,11 +272,6 @@ class ConfigH {
             e.printStackTrace();
         }
 
-        try {
-            config.setProperty("hibernate.connection.url", "http:mysql://localhost:3306/noDataBase");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         //HAPPY url
         config.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/Java");
@@ -322,7 +317,7 @@ class ConfigH {
         config.setProperty("hibernate.connection.autocommit", "true");
         config.setProperty("hibernate.id.new_generator_mappings", "false");
         config.setProperty("hibernate.cache.provider_class", "org.hibernate.cache.NoCacheProvider");
-        config.setProperty("hibernate.show_sql", "ture");
+        config.setProperty("hibernate.show_sql", "true");
         config.setProperty("hibernate.transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
         config.setProperty("hibernate.current_session_context_class", "thread");
 

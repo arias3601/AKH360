@@ -1,5 +1,3 @@
-
-
 public class SimpleRunnableStarter{
 	
     public static void main(String[] args){
