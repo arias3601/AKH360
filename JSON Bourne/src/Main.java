@@ -4,8 +4,11 @@ import java.util.HashMap;
 
 public class Main {
 
+    //write or read to files you don't have permisions, what if it isn't a JSON file,
+
     public static void main(String[] args) {
         try {
+            //trying used locked.txt - Doesn't work and runs the last thing that worked.
             File secretProfile = new File("secretProfile.txt");
 
             FileOutputStream fileOut = new FileOutputStream(secretProfile);
@@ -14,13 +17,27 @@ public class Main {
             JSONOutputStream jsonOut = new JSONOutputStream(fileOut);
             JSONInputStream jsonIn = new JSONInputStream(fileIn);
 
-            profile jsonBourne = new profile("Json Bourne", 29, "A threat to all", 10751);
+            //JSON out null won't work period
+            //JSONOutputStream jsonOut2 = new JSONOutputStream(null);
+
+            //JSON IN null - null pointer exception
+            try {
+                JSONInputStream jsonIn2 = new JSONInputStream(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            profile jsonBourne = new profile("Json Bourne", 28, "A threat to all", 10751);
 
             jsonOut.writeObject(jsonBourne);
 
-            //HashMap parsedProfile = (HashMap)jsonIn.readObject();
-            //profile parseBourne = new profile(parsedProfile);
-            //System.out.println(parseBourne);
+            //Changed the read in to Hello World (with no over ride) game an Unexpected Character H at postion 0 error, doesn't work sesne it isn't in JSON format
+
+
+
+            HashMap parsedProfile = (HashMap) jsonIn.readObject();
+            profile parseBourne = new profile(parsedProfile);
+            System.out.println(parseBourne);
 
 
 
@@ -47,6 +64,15 @@ class profile implements Serializable {
         this.age = age;
         this.description = description;
         this.idNumber = idNumber;
+    }
+
+    public profile(HashMap profile){
+        this.name = (String)profile.get("name");
+        Long longAge = (Long) profile.get("age");
+        this.age = longAge.intValue();
+        this.description = (String) profile.get("description");
+        Long longIdNumber =  (Long) profile.get("idNumber");
+        this.idNumber = longIdNumber.intValue();
     }
 
     public String getName() {

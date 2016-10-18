@@ -103,9 +103,7 @@ public class Main {
 
     }
 
-    public static void getRunning(int x){
-        listOfNumbers2.add(listOfNumbers.get(x));
-    }
+    public static void getRunning(int x){listOfNumbers2.add(listOfNumbers.get(x));}
 
     public static void getRacing(int x){
         listOfNumbers.set(x, 0);
@@ -168,17 +166,15 @@ class myRunnable implements Runnable {
 
 
 
-
-
 //RACE
 class startRace implements Runnable {
     public void run(){
         //to produce a more abvious example take this out.... Don't ask why it just works sometimes...
-        try {
+       /* try {
             Thread.sleep(0);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         for (int x = 0; x < 100; x++) {
             Main.getRunning(x);
         }
