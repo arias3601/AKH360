@@ -1,20 +1,11 @@
 package getServed;
 
-import org.quickconnectfamily.json.JSONInputStream;
-import org.quickconnectfamily.json.JSONOutputStream;
-
-import org.quickconnectfamily.json.JSONException;
-import org.quickconnectfamily.json.JSONInputStream;
-import org.quickconnectfamily.json.JSONOutputStream;
-import org.quickconnectfamily.json.ParseException;
+import org.quickconnectfamily.json.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.http.*;
+import java.io.*;
 import java.util.HashMap;
 
 /**
@@ -23,7 +14,7 @@ import java.util.HashMap;
 
 //Each of these is a servlet that handles that specific URL
 @WebServlet(name = "ExampleServlet", urlPatterns = {"/hello"})
-public class ExampleServelt extends HttpServlet {
+public class ExampleServelt2 extends HttpServlet {
     // When server responds to user
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
