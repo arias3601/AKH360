@@ -32,12 +32,20 @@ public class Server extends HttpServlet{
         mathMap.put("sum", sum);
         mathMap.put("check", (long)100);
 
+
+        //Server never sends anything back - client gets a SocketException and throws errors and gives up (after a
+        // couple seconds)
+        if (x == 0 && y == 0){
+            System.exit(0);
+        }
+
         try {
             sendToClient.writeObject(mathMap);
         } catch (JSONException e) {
             e.printStackTrace();
+            System.out.println("FAIL");
         }
-
+        System.out.println("Depart");
 
     }
     protected void doGet(HttpServletRequest numMath, HttpServletResponse response) throws ServletException, IOException {
